@@ -1,4 +1,6 @@
 Revision history for Perl extension Text::PicoTemplate
 
+{{$NEXT}}
+
 0.01    Wed Feb 13 07:45:47 2013
     - original version
