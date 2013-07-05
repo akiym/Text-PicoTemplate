@@ -20,7 +20,17 @@ sub render_string {
         Carp::croak('Template variables must be a HASH reference');
     }
 
-    $string =~ s{$TAG_START \s* (\S+?) \s* $TAG_END}{
+    my $re; $re = qr/
+        $TAG_START
+        \s*
+        (
+            (?> \S+ )
+            | (??{ $re })
+        )+
+        \s*
+        $TAG_END
+    /x;
+    $string =~ s{$re}{
         if (exists $vars->{$1}) {
             $vars->{$1};
         } else {
